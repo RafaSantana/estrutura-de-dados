@@ -18,9 +18,10 @@ public class Fila<T> {
         refNoEntradaFila = novoNo;
     }
 
+    @SuppressWarnings("unchecked")
     public T first() {
         if (!this.isEmpty()) {
-            No primeiroNo = refNoEntradaFila;
+            No<T> primeiroNo = refNoEntradaFila;
             while (true) {
                 if (primeiroNo.getRefNo() != null) {
                     primeiroNo = primeiroNo.getRefNo();
@@ -33,10 +34,11 @@ public class Fila<T> {
         return null;
     }
 
+    @SuppressWarnings("unchecked")
     public T dequeue() {
         if (!this.isEmpty()) {
-            No primeiroNo = refNoEntradaFila;
-            No noAuxiliar = refNoEntradaFila;
+            No<T> primeiroNo = refNoEntradaFila;
+            No<T> noAuxiliar = refNoEntradaFila;
             while (true) {
                 if (primeiroNo.getRefNo() != null) {
                     noAuxiliar = primeiroNo;
@@ -53,23 +55,22 @@ public class Fila<T> {
 
     @Override
     public String toString() {
-        String stringRetorno = "";
-        No noAuxiliar = refNoEntradaFila;
+        StringBuilder stringRetorno = new StringBuilder();
+        No<T> noAuxiliar = refNoEntradaFila;
 
         if (refNoEntradaFila != null) {
             while (true) {
-                stringRetorno += "[No{objeto=" + noAuxiliar.getObject() + "}]--->";
+                stringRetorno.append("[No{objeto=").append(noAuxiliar.getObject()).append("}]--->");
                 if (noAuxiliar.getRefNo() != null) {
                     noAuxiliar = noAuxiliar.getRefNo();
                 } else {
-                    stringRetorno += "null";
+                    stringRetorno.append("null");
                     break;
                 }
             }
 
         }
-
-        return stringRetorno;
+        return stringRetorno.toString();
     }
 
 }
