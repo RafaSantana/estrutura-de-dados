@@ -20,11 +20,11 @@ public class No<T> {
         this.object = object;
     }
 
-    public No getRefNo() {
+    public No<T> getRefNo() {
         return refNo;
     }
 
-    public void setRefNo(No refNo) {
+    public void setRefNo(No<T> refNo) {
         this.refNo = refNo;
     }
 
