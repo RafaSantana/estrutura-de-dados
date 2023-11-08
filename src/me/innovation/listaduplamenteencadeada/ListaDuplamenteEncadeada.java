@@ -14,7 +14,14 @@ public class ListaDuplamenteEncadeada<T> {
     }
 
     public T get(int index) {
-        return this.getNo(index).getConteudo();
+        NoDuplo<T> noAuxiliar = getNo(index);
+
+        if (noAuxiliar != null) {
+            return noAuxiliar.getConteudo();
+        } else {
+            throw new IndexOutOfBoundsException("Índice fora dos limites da lista");
+        }
+
     }
 
     public void add(T conteudo) {
@@ -31,6 +38,29 @@ public class ListaDuplamenteEncadeada<T> {
         this.tamanhoLista++;
     }
 
+    public void add(int index, T conteudo) {
+
+        NoDuplo<T> noAuxiliar = getNo(index);
+        NoDuplo<T> novoNo = new NoDuplo<>(conteudo);
+        novoNo.setRefNoPosterior(noAuxiliar);
+
+        if ((novoNo.getRefNoPosterior() != null) && (noAuxiliar != null)) {
+            novoNo.setRefNoAnterior(noAuxiliar.getRefNoAnterior());
+            novoNo.getRefNoPosterior().setRefNoAnterior(novoNo);
+        } else {
+            novoNo.setRefNoAnterior(refUltimoNo);
+            refUltimoNo = novoNo;
+        }
+
+        if (index == 0) {
+            refPrimeiroNo = novoNo;
+        } else {
+            novoNo.getRefNoAnterior().setRefNoPosterior(novoNo);
+        }
+        tamanhoLista++;
+
+    }
+
     private NoDuplo<T> getNo(int index) {
         NoDuplo<T> noAuxiliar = refPrimeiroNo;
 
@@ -42,5 +72,17 @@ public class ListaDuplamenteEncadeada<T> {
 
     public int size() {
         return this.tamanhoLista;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder strRetorno = new StringBuilder();
+        NoDuplo<T> noAuxiliar = refPrimeiroNo;
+        for (int i = 0; i < size(); i++) {
+            strRetorno.append("[No{conteudo=").append(noAuxiliar.getConteudo()).append("}]<--->");
+            noAuxiliar = noAuxiliar.getRefNoPosterior();
+        }
+        strRetorno.append("null");
+        return strRetorno.toString();
     }
 }
