@@ -24,7 +24,12 @@ public class Listaencadeada<T> {
     }
 
     public T get(int index) {
-        return getNo(index).getConteudo();
+        No<T> no = getNo(index);
+        if (no == null) {
+            throw new IndexOutOfBoundsException("Não existe conteúdo no índice " + index
+                    + " desta lista. Esta lista vai até o índice " + (this.size() - 1) + ".");
+        }
+        return no.getConteudo();
     }
 
     private No<T> getNo(int index) {
@@ -51,9 +56,12 @@ public class Listaencadeada<T> {
         }
 
         No<T> noAnterior = getNo(index - 1);
-        noAnterior.setProximoNo(noPivor.getProximoNo());
-
-        return noPivor.getConteudo();
+        if ((noPivor != null) && (noAnterior != null)) {
+            noAnterior.setProximoNo(noPivor.getProximoNo());
+            return noPivor.getConteudo();
+        } else {
+            throw new NullPointerException("O nó a ser removido é nulo.");
+        }
     }
 
     public int size() {
@@ -85,16 +93,16 @@ public class Listaencadeada<T> {
 
     @Override
     public String toString() {
-        String strRetorno = "";
+        StringBuilder strRetorno = new StringBuilder();
         No<T> noAuxiliar = referenciaEntrada;
 
         for (int i = 0; i < this.size(); i++) {
-            strRetorno += "[No{conteudo=" + noAuxiliar.getConteudo() + "}]--->";
+            strRetorno.append("[No{conteudo=").append(noAuxiliar.getConteudo()).append("}]--->");
             noAuxiliar = noAuxiliar.getProximoNo();
         }
 
-        strRetorno += "null";
-        return strRetorno;
+        strRetorno.append("null");
+        return strRetorno.toString();
     }
 
 }
