@@ -3,8 +3,8 @@ package me.innovation.listaduplamenteencadeada;
 public class NoDuplo<T> {
 
     private T conteudo;
-    private NoDuplo<T> noProximo;
-    private NoDuplo<T> noPrevio;
+    private NoDuplo<T> refNoAnterior;
+    private NoDuplo<T> refNoPosterior;
 
     public NoDuplo(T conteudo) {
         this.conteudo = conteudo;
@@ -18,20 +18,20 @@ public class NoDuplo<T> {
         this.conteudo = conteudo;
     }
 
-    public NoDuplo<T> getNoProximo() {
-        return noProximo;
+    public NoDuplo<T> getRefNoPosterior() {
+        return refNoPosterior;
     }
 
-    public void setNoProximo(NoDuplo<T> noProximo) {
-        this.noProximo = noProximo;
+    public void setRefNoPosterior(NoDuplo<T> noProximo) {
+        this.refNoPosterior = noProximo;
     }
 
-    public NoDuplo<T> getNoPrevio() {
-        return noPrevio;
+    public NoDuplo<T> getRefNoAnterior() {
+        return refNoAnterior;
     }
 
-    public void setNoPrevio(NoDuplo<T> noPrevio) {
-        this.noPrevio = noPrevio;
+    public void setRefNoAnterior(NoDuplo<T> noPrevio) {
+        this.refNoAnterior = noPrevio;
     }
 
     @Override
