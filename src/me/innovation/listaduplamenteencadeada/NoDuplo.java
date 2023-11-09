@@ -22,16 +22,16 @@ public class NoDuplo<T> {
         return refNoPosterior;
     }
 
-    public void setRefNoPosterior(NoDuplo<T> noProximo) {
-        this.refNoPosterior = noProximo;
+    public void setRefNoPosterior(NoDuplo<T> refNoPosterior) {
+        this.refNoPosterior = refNoPosterior;
     }
 
     public NoDuplo<T> getRefNoAnterior() {
         return refNoAnterior;
     }
 
-    public void setRefNoAnterior(NoDuplo<T> noPrevio) {
-        this.refNoAnterior = noPrevio;
+    public void setRefNoAnterior(NoDuplo<T> refNoAnterior) {
+        this.refNoAnterior = refNoAnterior;
     }
 
     @Override
