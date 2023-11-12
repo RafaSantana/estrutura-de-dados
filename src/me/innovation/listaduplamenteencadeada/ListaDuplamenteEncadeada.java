@@ -1,18 +1,46 @@
 package me.innovation.listaduplamenteencadeada;
 
+/**
+ * Classe que representa uma lista duplamente encadeada.
+ * 
+ * @param <T> Tipo generic de dado que a lista irá armazenar.
+ */
 public class ListaDuplamenteEncadeada<T> {
 
+    /**
+     * Referência para o primeiro nó da lista.
+     */
     private NoDuplo<T> refPrimeiroNo;
+
+    /**
+     * Referência para o último nó da lista.
+     */
     private NoDuplo<T> refUltimoNo;
 
+    /**
+     * Tamanho atual da lista.
+     */
     private int tamanhoLista;
 
+    /**
+     * Construtor da classe ListaDuplamenteEncadeada.
+     * Inicializa as referências para o primeiro e último nó como nulas e o tamanho
+     * da lista como zero.
+     */
     public ListaDuplamenteEncadeada() {
         this.refPrimeiroNo = null;
         this.refUltimoNo = null;
         this.tamanhoLista = 0;
     }
 
+    /**
+     * Retorna o elemento da lista na posição especificada pelo índice.
+     * 
+     * @param index índice do elemento a ser retornado.
+     * @return elemento da lista na posição especificada pelo índice.
+     * @throws IndexOutOfBoundsException se o índice estiver fora dos limites da
+     *                                   lista.
+     */
     public T get(int index) {
         NoDuplo<T> noAuxiliar = getNo(index);
 
@@ -21,9 +49,13 @@ public class ListaDuplamenteEncadeada<T> {
         } else {
             throw new IndexOutOfBoundsException("Índice fora dos limites da lista");
         }
-
     }
 
+    /**
+     * Adiciona um elemento ao final da lista.
+     * 
+     * @param conteudo elemento a ser adicionado à lista.
+     */
     public void add(T conteudo) {
         NoDuplo<T> novoNo = new NoDuplo<>(conteudo);
         novoNo.setRefNoAnterior(refUltimoNo);
@@ -38,8 +70,15 @@ public class ListaDuplamenteEncadeada<T> {
         this.tamanhoLista++;
     }
 
+    /**
+     * Adiciona um elemento à lista na posição especificada pelo índice.
+     * 
+     * @param index    índice onde o elemento será adicionado.
+     * @param conteudo elemento a ser adicionado à lista.
+     * @throws IndexOutOfBoundsException se o índice estiver fora dos limites da
+     *                                   lista.
+     */
     public void add(int index, T conteudo) {
-
         if ((index < 0) || (index > size())) {
             throw new IndexOutOfBoundsException("Índice fora dos limites da lista");
         }
@@ -61,9 +100,13 @@ public class ListaDuplamenteEncadeada<T> {
             novoNo.getRefNoAnterior().setRefNoPosterior(novoNo);
         }
         tamanhoLista++;
-
     }
 
+    /**
+     * Remove o elemento da lista na posição especificada pelo índice.
+     * 
+     * @param index índice do elemento a ser removido.
+     */
     public void remove(int index) {
         if (index == 0) {
             refPrimeiroNo = refPrimeiroNo.getRefNoPosterior();
@@ -84,6 +127,12 @@ public class ListaDuplamenteEncadeada<T> {
         }
     }
 
+    /**
+     * Retorna o nó da lista na posição especificada pelo índice.
+     * 
+     * @param index índice do nó a ser retornado.
+     * @return nó da lista na posição especificada pelo índice.
+     */
     private NoDuplo<T> getNo(int index) {
         NoDuplo<T> noAuxiliar = refPrimeiroNo;
 
@@ -93,10 +142,20 @@ public class ListaDuplamenteEncadeada<T> {
         return noAuxiliar;
     }
 
+    /**
+     * Retorna o tamanho atual da lista.
+     * 
+     * @return tamanho atual da lista.
+     */
     public int size() {
         return this.tamanhoLista;
     }
 
+    /**
+     * Retorna uma representação em string da lista.
+     * 
+     * @return representação em string da lista.
+     */
     @Override
     public String toString() {
         StringBuilder strRetorno = new StringBuilder();
