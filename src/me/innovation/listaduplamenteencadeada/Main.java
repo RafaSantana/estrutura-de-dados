@@ -2,12 +2,22 @@ package me.innovation.listaduplamenteencadeada;
 
 public class Main {
     public static void main(String[] args) {
-        ListaDuplamenteEncadeada<String> minhaListaEncadeada = new ListaDuplamenteEncadeada<>();
+        ListaDuplamenteEncadeada<String> lista = new ListaDuplamenteEncadeada<>();
 
-        minhaListaEncadeada.add(0, "node1");
-        minhaListaEncadeada.add(1, "node2");
-        minhaListaEncadeada.add(3, "nodeX");
-        minhaListaEncadeada.add(2, "nodeZ");
-        System.out.println(minhaListaEncadeada);
+        lista.add("c1");
+        lista.add("c2");
+        lista.add("c3");
+        lista.add("c4");
+        lista.add("c5");
+        lista.add("c6");
+        lista.add("c7");
+
+        System.out.println(lista);
+
+        lista.remove(3);
+        lista.add(3, "99");
+
+        System.out.println(lista);
+        System.out.println(lista.get(3));
     }
 }
