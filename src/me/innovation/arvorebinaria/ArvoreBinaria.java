@@ -100,11 +100,32 @@ public class ArvoreBinaria<T extends Comparable<T>> {
                     raiz = filho;
                 }
             } else if (atual.getNoDir() == null) {
+                if (pai.getNoEsq() == atual) {
+                    pai.setNoEsq(atual.getNoEsq());
+                } else {
+                    pai.setNoDir(atual.getNoEsq());
 
+                }
             } else if (atual.getNoEsq() == null) {
-
+                if (pai.getNoEsq() == atual) {
+                    pai.setNoEsq(atual.getNoDir());
+                } else {
+                    pai.setNoDir(atual.getNoDir());
+                }
             } else {
-
+                for (temporario = atual, filho = atual.getNoEsq(); filho
+                        .getNoDir() != null; temporario = filho, filho = filho.getNoDir()) {
+                    if (filho != atual.getNoEsq()) {
+                        temporario.setNoDir(filho.getNoEsq());
+                        filho.setNoEsq(atual.getNoEsq());
+                    }
+                    filho.setNoDir(atual.getNoDir());
+                    if (pai.getNoEsq() == atual) {
+                        pai.setNoEsq(filho);
+                    } else {
+                        pai.setNoDir(filho);
+                    }
+                }
             }
 
         } catch (NullPointerException erro) {
